@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xiaoliuren/CalendarView.dart';
 import 'package:xiaoliuren/ChildItemView.dart';
+import 'package:xiaoliuren/XiaoLiuRen.dart';
 
 /**
  * 有状态StatefulWidget
@@ -64,7 +65,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   //点击导航项是要显示的页面
   final pages = [
     CalendarView("日历"),
-    ChildItemView("小六壬"),
+    XiaoLiuRenView("小六壬"),
     ChildItemView("动态"),
     ChildItemView("我的")
   ];
