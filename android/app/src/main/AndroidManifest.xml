@@ -9,7 +9,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="小六壬"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/icon_image">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

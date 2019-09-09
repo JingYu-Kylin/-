@@ -13,7 +13,16 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text(widget._title)),
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Text("123"),
+          ),
+          Container(
+            child: Text("456"),
+          )
+        ],
+      )
     );
   }
 }
