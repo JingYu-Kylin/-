@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
-import "package:json_serializable/json_serializable.dart";
+//import "package:json_serializable/json_serializable.dart";
 
 class XiaoLiuRenView extends StatefulWidget {
   String _title;
@@ -19,9 +19,10 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
   }
   @override
   Widget build(BuildContext context) {
+    var hexagram;
     return Scaffold(
       appBar: AppBar(
-        title: Text(this._title, style: const TextStyle(fontFamily: "FanFangZuan"),),
+        title: Text(this._title, style: const TextStyle(fontFamily: "LiShu"),),
       ),
       body: new Container(
         child: new Column(
@@ -30,25 +31,19 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
               'assets/images/top.png',
               fit: BoxFit.fill,
             ),
-            new IconButton(
-                icon: Icon(Icons.navigate_before),
+            new MaterialButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: new Text('卜卦'),
                 onPressed: () {
-                  String jsonStr = conversion.conversion();
-                }),
-            Container(
-              child: Text("${lunar.lunarMonth} 月 ${lunar.lunarDay} 日 ${date.hour} 时 ${date.minute} 分"),
+                  hexagram = conversion.conversion();
+                },
             ),
-            Container(
-              child: Text("456"),
-            )
+            new Text("卦辞: ${hexagram}"),
+            
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -70,14 +65,7 @@ class Conversion {
     String hourResult = divination(hourRemainder);
     String hexagram = getHexagram(dayResult, hourResult);
 
-    var value = [
-      {'dayResult': dayResult},
-      {'hourResult': hourResult},
-      {'hexagram': hexagram}
-    ];
-
-
-    return jsonText;
+    return hexagram;
   }
 
   int getHours(int hour) {

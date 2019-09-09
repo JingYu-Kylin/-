@@ -52,7 +52,7 @@ class _CalendarViewState extends State<CalendarView> {
     Lunar lunar = LunarSolarConverter.solarToLunar(solar);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._title, style: const TextStyle(fontFamily: "FanFangZuan"),),
+        title: Text(widget._title, style: const TextStyle(fontFamily: "LiShu"),),
       ),
       body: new Container(
         child: new Column(
@@ -82,11 +82,6 @@ class _CalendarViewState extends State<CalendarView> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

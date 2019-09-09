@@ -76,10 +76,12 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   fonts:
-    - family: FanFangZuan
+    - family: Zuan
       fonts:
         - asset: assets/fonts/JingDianFanFangZuan.TTF
-#        - asset: assets/fonts/FanZhengLiShuJianTi.TTF
+    - family: LiShu
+      fonts:
+        - asset: assets/fonts/FanZhengLiShuJianTi.TTF
 
   assets:
     - assets/images/top.png
