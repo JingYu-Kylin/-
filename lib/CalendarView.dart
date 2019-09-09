@@ -1,34 +1,33 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_calendar/controller.dart';
 import 'package:flutter_custom_calendar/flutter_custom_calendar.dart';
 import 'package:flutter_custom_calendar/widget/base_day_view.dart';
 import 'package:flutter_custom_calendar/widget/base_week_bar.dart';
+import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
 
 class CalendarView extends StatefulWidget {
   String _title;
-
   CalendarView(this._title);
-
   @override
   _CalendarViewState createState() => _CalendarViewState();
 }
 
 class _CalendarViewState extends State<CalendarView> {
   String text;
-
   CalendarController controller;
-
+  var date = DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch);
   @override
   void initState() {
     text = "${DateTime.now().year}年${DateTime.now().month}月";
-
-    controller = new CalendarController(weekBarItemWidgetBuilder: () {
-      return CustomStyleWeekBarItem();
-    }, dayWidgetBuilder: (dateModel) {
-      return CustomStyleDayWidget(dateModel);
-    });
-
+    controller = new CalendarController(
+        weekBarItemWidgetBuilder: () {
+          return CustomStyleWeekBarItem();
+        },
+        dayWidgetBuilder: (dateModel) {
+          return CustomStyleDayWidget(dateModel);
+        },
+    );
+    controller.selectDateModel = DateModel.fromDateTime(DateTime.now());
     controller.addMonthChangeListener(
           (year, month) {
         setState(() {
@@ -36,7 +35,6 @@ class _CalendarViewState extends State<CalendarView> {
         });
       },
     );
-
     controller.addOnCalendarSelectListener((dateModel) {
       //刷新选择的时间
       setState(() {});
@@ -45,9 +43,16 @@ class _CalendarViewState extends State<CalendarView> {
 
   @override
   Widget build(BuildContext context) {
+    //当前时间戳
+    var now = DateTime.now().millisecondsSinceEpoch;
+    //当前日期
+    var date = DateTime.fromMillisecondsSinceEpoch(now);
+    //转换成农历
+    Solar solar = Solar(solarYear: date.year, solarMonth: date.month, solarDay: date.day);
+    Lunar lunar = LunarSolarConverter.solarToLunar(solar);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._title),
+        title: Text(widget._title, style: const TextStyle(fontFamily: "FanFangZuan"),),
       ),
       body: new Container(
         child: new Column(
@@ -72,7 +77,8 @@ class _CalendarViewState extends State<CalendarView> {
               calendarController: controller,
             ),
             new Text(
-                "自定义创建Item\n选中的时间:\n${controller.getSingleSelectCalendar().toString()}"),
+              "当前日期:${date.year}年${date.month}月${date.day}日, \n 农历${lunar}",
+            )
           ],
         ),
       ),
@@ -100,12 +106,10 @@ class CustomStyleWeekBarItem extends BaseWeekBar {
 
 class CustomStyleDayWidget extends BaseCustomDayWidget {
   CustomStyleDayWidget(DateModel dateModel) : super(dateModel);
-
   @override
   void drawNormal(DateModel dateModel, Canvas canvas, Size size) {
     bool isWeekend = dateModel.isWeekend;
     bool isInRange = dateModel.isInRange;
-
     //顶部的文字
     TextPainter dayTextPainter = new TextPainter()
       ..text = TextSpan(
