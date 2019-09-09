@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lunar_calendar_converter/lunar_solar_converter.dart';
+import "package:json_serializable/json_serializable.dart";
 
 class XiaoLiuRenView extends StatefulWidget {
   String _title;
@@ -10,10 +11,11 @@ class XiaoLiuRenView extends StatefulWidget {
 
 class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
   String get _title => "诸葛武侯马前课";
-  TimeConversion timeConversion;
+  Conversion conversion;
+
   @override
   void initState() {
-    timeConversion = new TimeConversion();
+    conversion = new Conversion();
   }
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
             new IconButton(
                 icon: Icon(Icons.navigate_before),
                 onPressed: () {
-                  timeConversion.timeConversion();
+                  String jsonStr = conversion.conversion();
                 }),
             Container(
               child: Text("${lunar.lunarMonth} 月 ${lunar.lunarDay} 日 ${date.hour} 时 ${date.minute} 分"),
@@ -51,8 +53,8 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
   }
 }
 
-class TimeConversion {
-  void timeConversion() {
+class Conversion {
+  String conversion() {
     //当前时间
     var date = DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch);
     if (date.hour >= 23) {
@@ -61,42 +63,51 @@ class TimeConversion {
     //转换成农历
     Solar solar = Solar(solarYear: date.year, solarMonth: date.month, solarDay: date.day);
     Lunar lunar = LunarSolarConverter.solarToLunar(solar);
-    int hours;
-    if (date.hour >=23 || date.hour < 1) {
-      hours = 1;
-    } else if (date.hour >= 1 && date.hour < 3) {
-      hours = 2;
-    } else if (date.hour >= 3 && date.hour < 5) {
-      hours = 3;
-    } else if (date.hour >= 5 && date.hour < 7) {
-      hours = 4;
-    } else if (date.hour >= 7 && date.hour < 9) {
-      hours = 5;
-    } else if (date.hour >= 9 && date.hour < 11) {
-      hours = 6;
-    } else if (date.hour >= 11 && date.hour < 13) {
-      hours = 7;
-    } else if (date.hour >= 13 && date.hour < 15) {
-      hours = 8;
-    } else if (date.hour >= 15 && date.hour < 17) {
-      hours = 9;
-    } else if (date.hour >= 17 && date.hour < 19) {
-      hours = 10;
-    } else if (date.hour >= 19 && date.hour < 21) {
-      hours = 11;
-    } else if (date.hour >= 21 && date.hour < 23) {
-      hours = 12;
-    }
+    int hours = getHours(date.hour);
     int dayRemainder = (lunar.lunarMonth + lunar.lunarDay) % 6;
     int hourRemainder = (dayRemainder + hours) % 6;
     String dayResult = divination(dayRemainder);
     String hourResult = divination(hourRemainder);
     String hexagram = getHexagram(dayResult, hourResult);
 
+    var value = [
+      {'dayResult': dayResult},
+      {'hourResult': hourResult},
+      {'hexagram': hexagram}
+    ];
+
+
+    return jsonText;
   }
 
-  String conversion () {
-
+  int getHours(int hour) {
+    int hours;
+    if (hour >=23 || hour < 1) {
+      hours = 1;
+    } else if (hour >= 1 && hour < 3) {
+      hours = 2;
+    } else if (hour >= 3 && hour < 5) {
+      hours = 3;
+    } else if (hour >= 5 && hour < 7) {
+      hours = 4;
+    } else if (hour >= 7 && hour < 9) {
+      hours = 5;
+    } else if (hour >= 9 && hour < 11) {
+      hours = 6;
+    } else if (hour >= 11 && hour < 13) {
+      hours = 7;
+    } else if (hour >= 13 && hour < 15) {
+      hours = 8;
+    } else if (hour >= 15 && hour < 17) {
+      hours = 9;
+    } else if (hour >= 17 && hour < 19) {
+      hours = 10;
+    } else if (hour >= 19 && hour < 21) {
+      hours = 11;
+    } else if (hour >= 21 && hour < 23) {
+      hours = 12;
+    }
+    return hours;
   }
   String divination (int remainder) {
     String result;
