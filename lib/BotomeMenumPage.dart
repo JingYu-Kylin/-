@@ -37,27 +37,27 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
 
   //当前显示页面的
   int currentIndex = 0;
-
   //底部导航栏显示的内容
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(
       backgroundColor: Colors.blue,
-      icon: Icon(Icons.home),
+      icon: Icon(IconData(0xe518,fontFamily: 'MyIcons')),
+//      activeIcon: Icon(IconData(0xe660,fontFamily: 'MyIcons')),
       title: Text("日历"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[600],
-      icon: Icon(Icons.hearing),
+      icon: Icon(IconData(0xe677,fontFamily: 'MyIcons')),
       title: Text("小六壬"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[800],
-      icon: Icon(Icons.message),
+      icon: Icon(IconData(0xe612,fontFamily: 'MyIcons')),
       title: Text("动态"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[900],
-      icon: Icon(Icons.person),
+      icon: Icon(IconData(0xe609,fontFamily: 'MyIcons')),
       title: Text("我的"),
     ),
   ];

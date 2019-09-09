@@ -82,6 +82,9 @@ flutter:
     - family: LiShu
       fonts:
         - asset: assets/fonts/FanZhengLiShuJianTi.TTF
+    - family: MyIcons
+      fonts:
+        - asset: assets/icons/iconfont.ttf
 
   assets:
     - assets/images/top.png

@@ -39,7 +39,7 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
                   hexagram = conversion.conversion();
                 },
             ),
-            new Text("卦辞: ${hexagram}"),
+            new Text("卦辞: ${hexagram.toString()}"),
             
           ],
         ),
