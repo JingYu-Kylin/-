@@ -17,6 +17,7 @@ class _ExplanationViewState extends State<ExplanationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: Text(widget._title, style: const TextStyle(fontFamily: "LiShu"),),
       ),
       body: new Container(

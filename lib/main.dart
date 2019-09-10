@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '小六壬',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primarySwatch: Colors.brown,
+      ),
       home: BotomeMenumPage(),
     );
   }

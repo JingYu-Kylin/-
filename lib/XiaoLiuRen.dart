@@ -24,6 +24,7 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: Text(this._title, style: const TextStyle(fontFamily: "LiShu"),),
       ),
       body: new Container(
@@ -34,7 +35,7 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
               fit: BoxFit.fill,
             ),
             new MaterialButton(
-                color: Colors.blue,
+                color: Colors.brown,
                 textColor: Colors.white,
                 child: new Text('卜卦'),
                 onPressed: () {

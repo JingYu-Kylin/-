@@ -52,6 +52,7 @@ class _CalendarViewState extends State<CalendarView> {
     Lunar lunar = LunarSolarConverter.solarToLunar(solar);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.brown,
         title: Text(widget._title, style: const TextStyle(fontFamily: "LiShu"),),
       ),
       body: new Container(
@@ -112,7 +113,7 @@ class CustomStyleDayWidget extends BaseCustomDayWidget {
           style: new TextStyle(
               color: !isInRange
                   ? Colors.grey
-                  : isWeekend ? Colors.blue : Colors.black,
+                  : isWeekend ? Colors.red : Colors.black,
               fontSize: 16))
       ..textDirection = TextDirection.ltr
       ..textAlign = TextAlign.center;
@@ -127,7 +128,7 @@ class CustomStyleDayWidget extends BaseCustomDayWidget {
           style: new TextStyle(
               color: !isInRange
                   ? Colors.grey
-                  : isWeekend ? Colors.blue : Colors.grey,
+                  : isWeekend ? Colors.brown: Colors.grey,
               fontSize: 12))
       ..textDirection = TextDirection.ltr
       ..textAlign = TextAlign.center;
@@ -140,7 +141,7 @@ class CustomStyleDayWidget extends BaseCustomDayWidget {
   void drawSelected(DateModel dateModel, Canvas canvas, Size size) {
     //绘制背景
     Paint backGroundPaint = new Paint()
-      ..color = Colors.blue
+      ..color = Colors.brown
       ..strokeWidth = 2;
     double padding = 8;
     canvas.drawCircle(Offset(size.width / 2, size.height / 2),
