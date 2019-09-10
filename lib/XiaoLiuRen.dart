@@ -37,15 +37,16 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
             new MaterialButton(
                 color: Colors.brown,
                 textColor: Colors.white,
-                child: new Text('卜卦'),
+                child: new Text('卜卦', style: const TextStyle(fontFamily: "Zuan"),),
                 onPressed: () {
                   String result = conversion.conversion();
                   setState(() {
+                    //状态赋值
                     hexagram = result;
                   });
                 },
             ),
-            new Text("卦辞: ${hexagram.toString()}"),
+            new Text("卦辞: \n${hexagram.toString()}", style: const TextStyle(fontFamily: "LiShu"),),
           ],
         ),
       ),

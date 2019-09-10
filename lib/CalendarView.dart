@@ -78,7 +78,9 @@ class _CalendarViewState extends State<CalendarView> {
               calendarController: controller,
             ),
             new Text(
-              "当前日期:${date.year}年${date.month}月${date.day}日, \n 农历${lunar}",
+//              "${date.year}年${date.month}月${date.day}日 \n ${lunar.toString()}",
+              "${lunar.toString()}",
+              style: const TextStyle(fontFamily: "LiShu"),
             )
           ],
         ),

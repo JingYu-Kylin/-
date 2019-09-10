@@ -23,13 +23,11 @@ class BotomeMenumPage extends StatefulWidget {
  */
 class BotomeMenumPageState extends State<BotomeMenumPage> {
   BotomeMenumPageState();
-
   @override
   void initState() {
     ///初始化，这个函数在生命周期中只调用一次
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     //图片加载在缓存中 (解决图片初次加载过慢的问题)
@@ -90,7 +88,6 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
       body: pages[currentIndex],
     );
   }
-
   /*切换页面*/
   void _changePage(int index) {
     /*如果点击的导航项不是当前项  切换 */

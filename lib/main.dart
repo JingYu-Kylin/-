@@ -8,8 +8,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //设置app名称
       title: '小六壬',
       debugShowCheckedModeBanner: false,
+      //设置默认主题
       theme: ThemeData(
           primarySwatch: Colors.brown,
       ),
