@@ -11,15 +11,17 @@ class XiaoLiuRenView extends StatefulWidget {
 
 class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
   String get _title => "诸葛武侯马前课";
+  String hexagram;
   Conversion conversion;
 
   @override
   void initState() {
     conversion = new Conversion();
+    hexagram = "";
   }
   @override
   Widget build(BuildContext context) {
-    var hexagram;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(this._title, style: const TextStyle(fontFamily: "LiShu"),),
@@ -36,7 +38,10 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
                 textColor: Colors.white,
                 child: new Text('卜卦'),
                 onPressed: () {
-                  hexagram = conversion.conversion();
+                  String result = conversion.conversion();
+                  setState(() {
+                    hexagram = result;
+                  });
                 },
             ),
             new Text("卦辞: ${hexagram.toString()}"),
@@ -50,8 +55,8 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
 
 class Conversion {
   String conversion() {
-    //当前时间
     var date = DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch);
+    //当前时间
     if (date.hour >= 23) {
       date = date.add(new Duration(days: 1));
     }
