@@ -31,6 +31,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage("assets/images/top.png"), context);
     //构建页面
     return buildBottomTabScaffold();
   }
