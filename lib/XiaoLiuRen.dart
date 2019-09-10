@@ -64,8 +64,14 @@ class Conversion {
     Solar solar = Solar(solarYear: date.year, solarMonth: date.month, solarDay: date.day);
     Lunar lunar = LunarSolarConverter.solarToLunar(solar);
     int hours = getHours(date.hour);
-    int dayRemainder = (lunar.lunarMonth + lunar.lunarDay) % 6;
-    int hourRemainder = (dayRemainder + hours) % 6;
+    int dayRemainder = (lunar.lunarMonth + lunar.lunarDay - 1) % 6;
+    if (dayRemainder == 0) {
+      dayRemainder = 6;
+    }
+    int hourRemainder = (dayRemainder + hours - 1) % 6;
+    if (hourRemainder == 0) {
+      hourRemainder = 6;
+    }
     String dayResult = divination(dayRemainder);
     String hourResult = divination(hourRemainder);
     String hexagram = getHexagram(dayResult, hourResult);

@@ -31,6 +31,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
 
   @override
   Widget build(BuildContext context) {
+    //图片加载在缓存中 (解决图片初次加载过慢的问题)
     precacheImage(AssetImage("assets/images/top.png"), context);
     //构建页面
     return buildBottomTabScaffold();
