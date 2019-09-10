@@ -45,7 +45,6 @@ class _XiaoLiuRenViewState extends State<XiaoLiuRenView> {
                 },
             ),
             new Text("卦辞: ${hexagram.toString()}"),
-            
           ],
         ),
       ),

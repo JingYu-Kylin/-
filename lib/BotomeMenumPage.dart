@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xiaoliuren/CalendarView.dart';
 import 'package:xiaoliuren/ChildItemView.dart';
+import 'package:xiaoliuren/ExplanationView.dart';
 import 'package:xiaoliuren/XiaoLiuRen.dart';
 
 /**
@@ -55,7 +56,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[800],
       icon: Icon(IconData(0xe612,fontFamily: 'MyIcons')),
-      title: Text("动态"),
+      title: Text("详解"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[900],
@@ -68,7 +69,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   final pages = [
     CalendarView("日历"),
     XiaoLiuRenView("小六壬"),
-    ChildItemView("动态"),
+    ExplanationView("详解"),
     ChildItemView("我的")
   ];
 
